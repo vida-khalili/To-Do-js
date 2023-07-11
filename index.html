@@ -30,16 +30,58 @@
           </div>
         </div>
         <h1>To Do List</h1>
-        <div class="add-task">
+        <div class="tasks-part">
+          <div class="task-input">
+            <h2>Add a new task</h2>
+            <form class="add-task-form">
+              <input
+                type="text"
+                class="task-input-title"
+                placeholder="Task Title"
+                autocomplete="off"
+              />
+              <textarea
+                type="text"
+                class="task-input-details"
+                placeholder="Task Details..."
+                rows="10"
+                autocomplete="off"
+              ></textarea>
+              <div class="buttons">
+                <button type="submit" class="btn submit-btn">
+                  Add to list
+                </button>
+                <button type="button" class="btn cancel-btn">Cancel</button>
+              </div>
+            </form>
+          </div>
+          <div class="tasks-list">
+            <div class="task-card" id="1">
+              <img
+                src="./images/tick-checkbox.svg"
+                alt="checked box"
+                id="checked-box"
+                class="check-box"
+              />
+              <img
+                src="./images/checkbox.svg"
+                alt="unchecked box"
+                id="unchecked-box"
+                class="check-box"
+              />
+              <div class="card-content">
+                <h5 class="card title">card title</h5>
+                <p class="card-details">
+                  Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
+                  et possimus vero doloremque saepe voluptates quos explicabo
+                  nemo, ab aut enim sit velit. Animi quae omnis, ullam
+                  accusantium totam repellendus.
+                </p>
+              </div>
+            </div>
+          </div>
           <button type="button" class="btn add-btn">
-            <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path
-                fill-rule="evenodd"
-                clip-rule="evenodd"
-                d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM12.75 9C12.75 8.58579 12.4142 8.25 12 8.25C11.5858 8.25 11.25 8.58579 11.25 9L11.25 11.25H9C8.58579 11.25 8.25 11.5858 8.25 12C8.25 12.4142 8.58579 12.75 9 12.75H11.25V15C11.25 15.4142 11.5858 15.75 12 15.75C12.4142 15.75 12.75 15.4142 12.75 15L12.75 12.75H15C15.4142 12.75 15.75 12.4142 15.75 12C15.75 11.5858 15.4142 11.25 15 11.25H12.75V9Z"
-                fill="#f2d388"
-              ></path>
-            </svg>
+            <img src="./images/add-btn.svg" alt="add button" />
           </button>
         </div>
       </div>

@@ -2,6 +2,8 @@
   --purple: #b1afff;
   --dark-purple: #7f669d;
   --yellow: #f2d388;
+  --light-yellow: #fdfdbd;
+  --light-red: #ff8787;
 }
 body {
   overflow: hidden;
@@ -23,8 +25,16 @@ body {
 .date-time {
   display: flex;
   justify-content: space-around;
-  width: 90%;
+  width: 100%;
   font-size: 14px;
+  font-weight: 500;
+}
+.date,
+.time {
+  width: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .to-do-container {
@@ -44,13 +54,17 @@ h1 {
 .btn {
   background: transparent;
   border: none;
+  font-weight: 700;
+  font-size: 16px;
   /* width: 50px;
   height: 50px; */
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: transform 100ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+  border-radius: 16px;
+  padding: 8px;
 }
 
 .btn:hover {
@@ -58,7 +72,6 @@ h1 {
 }
 
 .add-btn {
-  background-color: var(--dark-purple);
   border-radius: 100%;
   padding: 0;
   position: absolute;
@@ -66,9 +79,102 @@ h1 {
   right: 10px;
 }
 
-.btn svg {
+.btn img {
   width: 50px;
   height: 50px;
+}
+.task-input {
+  padding: 8px 8px 16px 8px;
+  border-radius: 8px;
+  z-index: 10;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  top: 79px;
+  display: none;
+  box-shadow: 1px 1px 2px gray;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 16px 0;
+}
+.add-task-form {
+  display: grid;
+  gap: 16px;
+}
+
+.task-input-details,
+.task-input-title {
+  width: 100%;
+  font-size: 16px;
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid gray;
+  text-transform: capitalize;
+}
+
+input:focus-visible,
+textarea:focus-visible {
+  outline-color: var(--dark-purple);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 1fr 0.5fr;
+  justify-items: center;
+}
+
+.submit-btn {
+  background-color: var(--dark-purple);
+  color: var(--yellow);
+  width: 80%;
+  margin: 0 auto;
+}
+.cancel-btn {
+  color: white;
+  background-color: #ff8787;
+  width: 80%;
+}
+.tasks-list {
+  margin-top: 12px;
+}
+
+#checked-box {
+  display: none;
+}
+
+.task-card {
+  padding: 8px;
+  border-radius: 8px;
+  box-shadow: 1px 1px 2px gray;
+  display: grid;
+  grid-template-columns: 20px 1fr;
+  gap: 8px;
+  height: 120px;
+  cursor: pointer;
+}
+
+h5 {
+  font-size: 16px;
+  margin-bottom: 8px;
+}
+
+.card-details {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: 70px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.check-box {
+  margin-top: 4px;
+  height: 20px;
+  width: 20px;
 }
 
 @media screen and (max-width: 800px) {
