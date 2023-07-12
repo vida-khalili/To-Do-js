@@ -5,6 +5,27 @@
   --light-yellow: #fdfdbd;
   --light-red: #ff8787;
 }
+/* SCROLL BARR STYLE */
+/* width */
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
 body {
   overflow: hidden;
 }
@@ -88,7 +109,8 @@ h1 {
   width: 18px;
   height: 18px;
 }
-.task-input {
+.task-input,
+.edit-task-input {
   padding: 8px 8px 16px 8px;
   border-radius: 8px;
   z-index: 10;
@@ -104,13 +126,16 @@ h2 {
   font-size: 18px;
   margin: 16px 0;
 }
-.add-task-form {
+.add-task-form,
+.edit-task-form {
   display: grid;
   gap: 16px;
 }
 
 .task-input-details,
-.task-input-title {
+.task-input-title,
+.edit-task-input-title,
+.edit-task-input-details {
   width: 100%;
   font-size: 16px;
   padding: 8px;
@@ -136,25 +161,31 @@ textarea:focus-visible {
   width: 80%;
   margin: 0 auto;
 }
+.save-edit-btn {
+  background-color: var(--yellow);
+  color: var(--dark-purple);
+  width: 80%;
+}
+
 .cancel-btn {
   color: white;
   background-color: #ff8787;
   width: 80%;
 }
 .tasks-list {
-  /* display: none; */
   margin-top: 12px;
 }
 
 .tasks {
   padding: 2px 8px;
   position: fixed;
+  top: 125px;
   overflow-y: auto;
   width: 312px;
   height: 470px;
 }
 
-#checked-box {
+.checked {
   display: none;
 }
 
@@ -167,7 +198,12 @@ textarea:focus-visible {
   grid-template-columns: 20px 1fr;
   gap: 8px;
   height: 100px;
-  cursor: pointer;
+  background-color: var(--light-yellow);
+  /* cursor: pointer; */
+}
+
+.task-card:nth-child(even) {
+  background-color: var(--purple);
 }
 
 h5 {
@@ -188,6 +224,7 @@ h5 {
 }
 
 .check-box {
+  cursor: pointer;
   height: 20px;
   width: 20px;
 }
@@ -224,6 +261,21 @@ h5 {
   width: 100%;
   margin-top: 2px;
   opacity: 0.5;
+}
+.author {
+  position: absolute;
+  bottom: 20px;
+  left: 10px;
+  font-size: 12px;
+}
+.author a {
+  color: var(--dark-purple);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.author a:hover {
+  border-bottom: 1px solid var(--dark-purple);
 }
 
 @media screen and (max-width: 800px) {
