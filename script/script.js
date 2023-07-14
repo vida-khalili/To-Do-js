@@ -61,7 +61,7 @@ const generateTaskCard = () => {
                 onclick="handleCheckBox(event,${taskCardId})"
               />
               <div class="card-content" id="card-content-${taskCardId}">
-                <h5 class="card title">${taskCardTitle}</h5>
+                <h5 class="card-title">${taskCardTitle}</h5>
                 <p class="card-details">${taskCardDetails}</p>
                 <div class="card-buttons">
                   <button class="btn delete-btn" onclick="deleteCard(event , ${taskCardId})">
