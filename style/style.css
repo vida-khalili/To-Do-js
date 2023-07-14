@@ -130,9 +130,9 @@ h1 {
   position: absolute;
   background-color: white;
   width: 100%;
-  top: 79px;
+  top: 110px;
   display: none;
-  box-shadow: 1px 1px 2px gray;
+  box-shadow: 1px 2px 2px 1px gray, -2px -1px 2px 1px gray;
 }
 
 h2 {
@@ -184,6 +184,17 @@ textarea:focus-visible {
   color: white;
   background-color: #ff8787;
   width: 80%;
+}
+
+.close-btn {
+  position: absolute;
+  right: 10px;
+  opacity: 0.8;
+}
+
+.close-btn svg {
+  height: 10px;
+  width: 10px;
 }
 .tasks-list {
   margin-top: 12px;

@@ -18,6 +18,29 @@ function refreshTime() {
 
 setInterval(refreshTime, 1000);
 
+let tasksList = [];
+let cardNumber = 0;
+let count = 0;
+
+const saveToLocalStorage = () => {
+  localStorage.setItem("localTasksList", JSON.stringify(tasksList));
+  localStorage.setItem("count", JSON.stringify(count));
+  localStorage.setItem("cardNumber", JSON.stringify(cardNumber));
+};
+
+const clearLocalStorage = () => {
+  localStorage.clear();
+};
+
+const loadFromLocalStorage = () => {
+  cardNumber = Number(JSON.parse(localStorage.getItem("cardNumber")));
+  if (localStorage.length > 0 && cardNumber > 0) {
+    tasksList = JSON.parse(localStorage.getItem("localTasksList"));
+    count = Number(JSON.parse(localStorage.getItem("count")));
+    generateTaskCard();
+  }
+};
+
 //Add New Task Button
 let addButton = document.querySelector(".add-btn");
 
@@ -26,6 +49,7 @@ let submitNewTaskButton = document.querySelector(".submit-btn");
 
 //Cancel New Task Button
 let cancelNewTaskButton = document.getElementById("cancel-new-btn");
+let closeNewTaskButton = document.getElementById("close-btn");
 
 //Form (new task)
 let newTaskForm = document.querySelector(".add-task-form");
@@ -37,9 +61,6 @@ let newTaskTitleInput = document.querySelector(".task-input-title");
 let newTaskDetailsInput = document.querySelector(".task-input-details");
 
 let cancelEditButton = document.getElementById("cancel-edit-btn");
-
-let tasksList = [];
-let count = 0;
 
 const generateTaskCard = () => {
   document.querySelector(".no-task").style.display = "none";
@@ -164,6 +185,7 @@ const getNewTaskInput = (event) => {
   event.preventDefault();
   let newTaskTitle = newTaskTitleInput.value;
   let newTaskDetails = newTaskDetailsInput.value;
+  cardNumber++;
   count++;
   let task = {
     id: count,
@@ -172,6 +194,8 @@ const getNewTaskInput = (event) => {
     done: false,
   };
   tasksList.push(task);
+  clearLocalStorage();
+  saveToLocalStorage();
   document.querySelector(".task-input").style.display = "none";
   generateTaskCard();
   emptyForm();
@@ -215,10 +239,13 @@ const editCard = (event, taskCardId) => {
 const deleteCard = (event, taskCardId) => {
   event.preventDefault();
   const cardToDelete = tasksList.findIndex((task) => task.id === taskCardId);
-
   tasksList.splice(cardToDelete, 1);
   generateTaskCard();
+  cardNumber--;
+  clearLocalStorage();
+  saveToLocalStorage();
   if (tasksList.length === 0) {
+    clearLocalStorage();
     document.querySelector(".no-task").style.display = "flex";
   }
 };
@@ -350,6 +377,9 @@ addButton.addEventListener("click", () => {
   document.querySelector(".task-input").style.display = "block";
 });
 cancelNewTaskButton.addEventListener("click", () => {
+  document.querySelector(".task-input").style.display = "none";
+});
+closeNewTaskButton.addEventListener("click", () => {
   document.querySelector(".task-input").style.display = "none";
 });
 
