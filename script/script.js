@@ -354,6 +354,8 @@ const saveEdit = (event, taskCardId) => {
 
   const cardToDelete = tasksList.findIndex((task) => task.id === taskCardId);
   tasksList.splice(cardToDelete, 1, editedTask);
+  localStorage.removeItem("tasksList");
+  localStorage.setItem("localTasksList", JSON.stringify(tasksList));
   closeEditWindow(event);
 };
 const closeEditWindow = (event) => {
