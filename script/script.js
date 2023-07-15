@@ -70,12 +70,18 @@ const generateTaskCard = () => {
     let taskCardId = task.id;
     let taskCardTitle = task.title;
     let taskCardDetails = task.details;
+    let taskDone = task.done;
+    console.log(taskDone);
     cardContent =
       cardContent +
       `
     <div class="task-card" id="task-card-${taskCardId}">
               <img
-                src="./images/checkbox.svg"
+                src=${
+                  taskDone
+                    ? "./images/tick-checkbox.svg"
+                    : "./images/checkbox.svg"
+                }
                 alt="check box"
                 id="check-box-${taskCardId}"
                 class="check-box"
@@ -373,6 +379,8 @@ const handleCheckBox = (event, taskCardId) => {
     checkbox.src = "./images/checkbox.svg";
     tasksList[taskCardId - 1].done = false;
   }
+  clearLocalStorage();
+  saveToLocalStorage();
 };
 
 addButton.addEventListener("click", () => {
