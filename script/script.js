@@ -71,7 +71,6 @@ const generateTaskCard = () => {
     let taskCardTitle = task.title;
     let taskCardDetails = task.details;
     let taskDone = task.done;
-    console.log(taskDone);
     cardContent =
       cardContent +
       `
@@ -211,7 +210,7 @@ const editCard = (event, taskCardId) => {
   event.preventDefault();
   let previousCardTitle = tasksList[taskCardId - 1].title;
   let previousCardDetails = tasksList[taskCardId - 1].details;
-
+  let previousCardDone = tasksList[taskCardId - 1].done;
   document.querySelector(".edit-task-input").style.display = "block";
   document.querySelector(
     ".edit-task-input"
@@ -234,7 +233,7 @@ const editCard = (event, taskCardId) => {
                 autocomplete="off"
                             > ${previousCardDetails}</textarea>
               <div class="buttons">
-                <button type="button" class="btn save-edit-btn" onclick="saveEdit(event, ${taskCardId})">Save</button>
+                <button type="button" class="btn save-edit-btn" onclick="saveEdit(event, ${taskCardId}, ${previousCardDone})">Save</button>
                 <button type="button" class="btn cancel-btn"  onclick="closeEditWindow(event)">
                   Cancel
                 </button>
@@ -256,7 +255,7 @@ const deleteCard = (event, taskCardId) => {
   }
 };
 
-const saveEdit = (event, taskCardId) => {
+const saveEdit = (event, taskCardId, previousCardDone) => {
   let editedTaskCardTitle = document.getElementById(
     `edit-input-${taskCardId}`
   ).value;
@@ -355,7 +354,7 @@ const saveEdit = (event, taskCardId) => {
     id: taskCardId,
     title: editedTaskCardTitle,
     details: editedTaskCardDetails,
-    done: false,
+    done: previousCardDone,
   };
 
   const cardToDelete = tasksList.findIndex((task) => task.id === taskCardId);
