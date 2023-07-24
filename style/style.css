@@ -33,6 +33,18 @@ html {
 body {
   overflow: hidden;
 }
+
+.card-modal {
+  display: none;
+  min-height: 200px;
+  padding: 8px 16px;
+  border-radius: 0 16px;
+  width: 100%;
+  position: absolute;
+  top: 125px;
+  background-color: #ff8787;
+  box-shadow: 3px 3px 5px black, -2px -2px 5px gray;
+}
 .container {
   max-width: 800px;
   position: relative;
@@ -186,6 +198,9 @@ textarea:focus-visible {
   width: 80%;
 }
 
+.close-modal-btn {
+  top: 10px;
+}
 .close-btn {
   position: absolute;
   right: 10px;
@@ -235,6 +250,9 @@ h5 {
   margin-bottom: 8px;
 }
 
+.modal-area {
+  cursor: pointer;
+}
 .card-details {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -335,8 +353,14 @@ h5 {
 
 @media screen and (max-width: 400px) {
   .container {
+    margin-top: 40px;
     max-width: 370px;
   }
+  .card-modal {
+    width: 90%;
+    left: 10px;
+  }
+
   .to-do-container {
     height: 558px;
     width: 280px;
@@ -368,7 +392,7 @@ h5 {
   .tasks {
     width: 225px;
     height: 302px;
-    top: 134px;
+    top: 175px;
   }
 
   .task-card {

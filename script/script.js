@@ -86,9 +86,11 @@ const generateTaskCard = () => {
                 class="check-box"
                 onclick="handleCheckBox(event,${taskCardId})"
               />
-              <div class="card-content" id="card-content-${taskCardId}">
+              <div class="card-content" id="card-content-${taskCardId}" >
+              <div class="modal-area" onclick="openCardModal(event, ${taskCardId})">
                 <h5 class="card-title">${taskCardTitle}</h5>
                 <p class="card-details">${taskCardDetails}</p>
+                </div>
                 <div class="card-buttons">
                   <button class="btn delete-btn" onclick="deleteCard(event , ${taskCardId})">
                     <svg
@@ -231,7 +233,7 @@ const editCard = (event, taskCardId) => {
                 placeholder="Task Details..."
                 rows="10"
                 autocomplete="off"
-                            > ${previousCardDetails}</textarea>
+                            >${previousCardDetails}</textarea>
               <div class="buttons">
                 <button type="button" class="btn save-edit-btn" onclick="saveEdit(event, ${taskCardId}, ${previousCardDone})">Save</button>
                 <button type="button" class="btn cancel-btn"  onclick="closeEditWindow(event)">
@@ -262,10 +264,11 @@ const saveEdit = (event, taskCardId, previousCardDone) => {
   let editedTaskCardDetails = document.getElementById(
     `edit-textarea-${taskCardId}`
   ).value;
-  document.getElementById(
-    `card-content-${taskCardId}`
-  ).innerHTML = `<h5 class="card title">${editedTaskCardTitle}</h5>
+  document.getElementById(`card-content-${taskCardId}`).innerHTML = `
+                <div class="modal-area" onclick="openCardModal(event, ${taskCardId})">
+  <h5 class="card title">${editedTaskCardTitle}</h5>
 <p class="card-details">${editedTaskCardDetails}</p>
+</div>
  <div class="card-buttons">
                   <button class="btn delete-btn" onclick="deleteCard(event , ${taskCardId})">
                     <svg
@@ -382,6 +385,37 @@ const handleCheckBox = (event, taskCardId) => {
   saveToLocalStorage();
 };
 
+const openCardModal = (event, taskCardId) => {
+  event.preventDefault();
+  let modalTitle = tasksList[taskCardId - 1].title;
+  let modalDetails = tasksList[taskCardId - 1].details;
+  let modalElement = document.querySelector(".card-modal");
+  modalElement.style.display = "block";
+  modalElement.innerHTML = `
+  <h2>${modalTitle}</h2>
+  <p>${modalDetails}</p>
+  <button class="btn close-btn close-modal-btn" id="close-modal-btn" onclick="closeCardModal(event)">
+            <svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink" fill="#000000">
+              <g id="SVGRepo_iconCarrier">
+                <g id="Free-Icons" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round"
+                  stroke-linejoin="round">
+                  <g transform="translate(-157.000000, -158.000000)" id="Group" stroke="#000000" stroke-width="2">
+                    <g transform="translate(153.000000, 154.000000)" id="Shape">
+                      <path d="M19,5 L5,19 M19,19 L5,5"></path>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </svg>
+          </button>`;
+};
+
+const closeCardModal = (event) => {
+  event.preventDefault();
+  let modalElement = document.querySelector(".card-modal");
+  modalElement.style.display = "none";
+};
 addButton.addEventListener("click", () => {
   document.querySelector(".task-input").style.display = "block";
 });
